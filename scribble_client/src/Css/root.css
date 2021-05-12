@@ -1,0 +1,39 @@
+:root {
+
+    /* color */
+    --body-background : rgb(18,18,18);
+    --dark-two : rgb(30,30,30);
+    --text-highlight : #64ffda;
+    --first-text-white : #fff;
+    --second-text-white : #FFFFFF;
+    --third-text-white : #9A9AA6;
+    --fourth-text-white : #B2B6B9;
+    --fifth-text-white : #c1c6c9;
+
+    /* fonts */
+    --inter-text : 'Inter', sans-serif;
+}
+
+.body_main
+{
+    width: 100%;
+    min-height: 100vh;
+    padding : 20px 0px;
+}
+.body_bg
+{
+    background-color: var(--body-background);
+}
+@media(max-width:780px)
+{
+    .body_main{
+        padding : 20px 0px;
+    }
+}
+
+.anchor_tag a
+{
+    text-decoration: none;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');

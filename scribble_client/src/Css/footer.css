@@ -1,0 +1,10 @@
+.footer_main
+{
+    width : 100%;
+    position: fixed;
+    bottom : 0;
+    left : 30px;
+    background-color: red;
+    background-color: var(--body-background);
+}
+

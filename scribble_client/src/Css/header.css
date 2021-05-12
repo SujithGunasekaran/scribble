@@ -1,0 +1,71 @@
+.header_main
+{
+    width : 100%;
+    position: fixed;
+    top : 0;
+    left : 0;
+    background-color: var(--body-background);
+}
+.header_main_container
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding : 25px 20px;
+}
+.header_logo
+{
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.040rem;
+    font-family: var(--inter-text);
+}
+.header_logo a
+{
+    color : var(--first-text-white);
+}
+.header_auth_container
+{
+    display: flex;
+}
+.header_login
+{
+    padding-right: 20px;
+    font-family: var(--inter-text);
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.040rem;
+}
+.header_login a
+{
+    color : var(--fifth-text-white);
+    transition: 0.4s all ease-in-out;
+}
+.header_login a:hover
+{
+    color : var(--text-highlight);
+    cursor: pointer;
+}
+.header_signup
+{
+    font-family: var(--inter-text);
+    font-size: 1.1rem;
+    letter-spacing: 0.040rem;
+    font-weight: 400;
+}
+.header_signup a
+{
+    color : var(--text-highlight);
+    transition: 0.4s all ease-in-out;
+}
+.header_signup a:hover
+{
+    color : var(--text-highlight);
+}
+
+@media(max-width:780px)
+{
+    .header_main_container{
+        padding : 20px 1px;
+    }
+}
