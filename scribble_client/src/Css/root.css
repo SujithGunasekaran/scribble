@@ -1,8 +1,8 @@
 :root {
 
     /* color */
-    --body-background : rgb(18,18,18);
-    --dark-two : rgb(30,30,30);
+    --body-background : #11161a;
+    --dark-two : #232629;
     --text-highlight : #64ffda;
     --first-text-white : #fff;
     --second-text-white : #FFFFFF;
