@@ -1,9 +1,10 @@
 import React, { Suspense, lazy } from 'react';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
-import Header from './Components/Header';
-// import Footer from './Components/Footer';
 import './Css/root.css';
 
+// lazy loading
+
+const Header = lazy(() => import('./Components/Header'));
 const Home = lazy(() => import('./Pages/Home'));
 const Login = lazy(() => import('./Pages/Login'));
 const Signup = lazy(() => import('./Pages/Signup'));
@@ -13,7 +14,9 @@ const App: React.FC = () => {
   return (
     <Router>
       <div className="body_bg">
-        <Header />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Header />
+        </Suspense>
         <Switch>
           <div className="body_main">
             <Suspense fallback={<div>Loading...</div>}>
@@ -23,7 +26,6 @@ const App: React.FC = () => {
             </Suspense>
           </div>
         </Switch>
-        {/* <Footer /> */}
       </div>
     </Router>
   )
