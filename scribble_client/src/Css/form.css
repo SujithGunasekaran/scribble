@@ -1,0 +1,126 @@
+.form_container
+{
+    margin-top: 80px;
+}
+
+.form_model_container
+{
+    background-color: var(--dark-two);
+    padding : 15px 25px;
+    border-radius: 8px;
+}
+
+.form_model_heading
+{
+    padding : 5px 0px 20px 0px;
+    font-family : var(--inter-text);
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: 0.040rem;
+    color : var(--first-text-white);
+}
+.form_model_label
+{
+    padding : 5px 0px;
+    font-family: var(--inter-text);
+    color : var(--third-text-white);
+    letter-spacing: 0.040rem;
+    font-weight: 400;
+    font-size: .850rem;
+}
+.form_model_input
+{
+    width: 100%;
+    height : 45px;
+    padding : 0px 5px;
+    margin : 10px 0px;
+    border : 1px solid var(--dark-two);
+    border-radius: 7px;
+    background-color: var(--sixth-text-white);
+    font-family: var(--inter-text);
+    font-size: .9rem;
+    letter-spacing: 0.040rem;
+    font-weight: 400;
+    color : var(--first-text-white);
+    transition: 0.4s all ease-in-out;
+}
+.form_model_input::placeholder
+{
+    color : var(--third-text-white);
+    font-family: var(--inter-text);
+    letter-spacing: 0.020rem;
+}
+.form_model_input:focus
+{
+    outline: none;
+    border : 1px solid var(--text-highlight);
+}
+.form_model_input:hover
+{
+    border : 1px solid var(--text-highlight);
+}
+.form_model_forgot
+{
+    padding : 15px 0px;
+    text-align: right;
+    font-family: var(--inter-text);
+    font-size: .950rem;
+    font-weight: 400;
+    letter-spacing: .030rem;
+    color : var(--text-highlight);
+}
+.form_model_forgot a
+{
+    text-decoration: none;
+    color : var(--text-highlight);
+}
+.form_model_forgot a:focus
+{
+    text-decoration: none;
+    color : var(--text-highlight);
+}
+.form_model_btn
+{
+    margin : 20px 0px;
+    width: 100%;
+    padding : 10px 0px;
+    border : 1px solid var(--dark-two);
+    border-radius: 50px;
+    background-color: var(--text-highlight);
+    color : var(--body-background);
+    font-family: var(--inter-text);
+    font-size: 1.050rem;
+    font-weight: 600;
+    letter-spacing: 0.050rem;
+    transition: 0.4s all ease-in-out;
+}
+.form_model_btn:hover
+{
+    background-color: var(--dark-two);
+    border: 1px solid var(--text-highlight);
+    color : var(--text-highlight);
+}
+.form_model_btn:focus
+{
+    outline: none;
+}
+.form_model_create
+{
+    padding : 15px 0px;
+    text-align: center;
+    font-family: var(--inter-text);
+    font-size: .950rem;
+    font-weight: 400;
+    letter-spacing: .030rem;
+    color : var(--fifth-text-white);
+}
+.form_model_create a
+{
+    text-decoration: none;
+    color : var(--text-highlight);
+}
+.form_model_create a:focus
+{
+    text-decoration: none;
+    color: var(--text-highlight);
+}
