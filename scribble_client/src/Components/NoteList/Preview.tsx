@@ -8,11 +8,15 @@ const Preview: React.FC<FormProps> = (props) => {
     const { formField } = props;
 
     return (
-        <div className="markdown_container">
-            <Markdown>
-                {formField?.content ?? ''}
-            </Markdown>
+        <div>
+            <div className="home_note_edit_title_input">{formField?.title ?? ''}</div>
+            <div className="markdown_container">
+                <Markdown>
+                    {formField?.content ?? ''}
+                </Markdown>
+            </div>
         </div>
+
     )
 }
 
