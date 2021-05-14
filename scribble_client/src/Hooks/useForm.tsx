@@ -13,6 +13,10 @@ export const useForm = () => {
         })
     }
 
-    return { formField, handleInputChange }
+    const handleFormSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+    }
+
+    return { formField, handleInputChange, handleFormSubmit }
 
 }
