@@ -1,12 +1,14 @@
 import React, { Suspense, lazy, useState } from 'react';
-import '../Css/home.css';
 import AddIcon from '@material-ui/icons/Add';
 import { useForm } from '../Hooks/useForm';
+import { withRouter } from 'react-router-dom';
+import '../Css/home.css';
+
 
 const NoteListItem = lazy(() => import('../Components/NoteList/NoteListItem'));
 const NoteWrapper = lazy(() => import('../Components/NoteList/NoteWrapper'));
 
-const Home: React.FC = () => {
+const Home: React.FC = (props) => {
 
     const [isNeedToEditNote, setIsNeedToEditNote] = useState<Boolean>(true);
     const [currentComponent, setCurrentComponent] = useState<string>('editnote');
@@ -46,11 +48,18 @@ const Home: React.FC = () => {
                                             handleInputChange={handleInputChange}
                                         />
                                     </Suspense>
+                                    {
+                                        isNeedToEditNote &&
+                                        <button className="home_note_save">Save</button>
+                                    }
                                 </div>
                             </div>
-                            <div className="add_container">
-                                <AddIcon />
-                            </div>
+                            {
+                                !isNeedToEditNote &&
+                                <div className="add_container">
+                                    <AddIcon />
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -59,4 +68,4 @@ const Home: React.FC = () => {
     )
 }
 
-export default Home;
+export default withRouter(Home);
