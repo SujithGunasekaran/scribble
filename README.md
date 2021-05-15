@@ -12,7 +12,9 @@ Notes Taking app 📕
 
 ## How to run locally
 
-  1. run `npm install` command on both scribble_server and scribble_client.   
+### Server Setup
+
+  1. run `npm install` command.   
   2. Create a .env file in root path
   3. Copy below code and paste it in .env
   
@@ -20,6 +22,8 @@ Notes Taking app 📕
         PORT = your port number
         MONGO_URI = your mongodb uri
       </code>
+  
+  4. Run the following command `tsc -w` typescript watchMode server. 
   
   4. If you like to populate sample data in your mongodb, Please follow below step.
       
