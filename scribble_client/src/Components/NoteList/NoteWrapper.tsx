@@ -4,17 +4,22 @@ import { FormProps } from '../../form.model';
 
 const NoteWrapper: React.FC<FormProps> = (props) => {
 
-    const { currentComponent, formField, handleInputChange } = props;
+    const { currentComponent, formField, formError, handleInputChange, handleSaveForm } = props;
 
-    const Component = components[currentComponent.toLocaleLowerCase()];
+    const Component = currentComponent ? components[currentComponent.toLocaleLowerCase()] : null;
 
     return (
         <div>
             <Suspense fallback={<div>Loading...</div>}>
-                <Component
-                    formField={formField}
-                    handleInputChange={handleInputChange}
-                />
+                {
+                    Component &&
+                    <Component
+                        formError={formError}
+                        formField={formField}
+                        handleInputChange={handleInputChange}
+                        handleSaveForm={handleSaveForm}
+                    />
+                }
             </Suspense>
         </div>
     )

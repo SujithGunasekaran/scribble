@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { memo } from 'react';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { noteList } from '../../form.model';
 
-const NoteListItem: React.FC = () => {
+const NoteListItem: React.FC<noteList> = memo((props) => {
+    const { noteList } = props;
     return (
         <React.Fragment>
             {
-                [...Array(20)].map((_index) => (
-                    <div className="home_note_list_container">
+                noteList.length > 0 &&
+                noteList.map((noteInfo: any, index: any) => (
+                    <div className="home_note_list_container" key={index}>
                         <div className="home_note_head_container">
-                            <div className="home_note_list_title">Title</div>
+                            <div className="home_note_list_title">{noteInfo.title}</div>
                             <div className="home_note_head_icon_display">
                                 <div>
                                     <EditIcon className="home_note_list_edit_btn" />
@@ -19,12 +22,12 @@ const NoteListItem: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="home_note_list_content">Content goes here...</div>
+                        <div className="home_note_list_content">{`${noteInfo.content.substr(0, 20)}...`}</div>
                     </div>
                 ))
             }
         </React.Fragment>
     )
-}
+})
 
 export default NoteListItem;
