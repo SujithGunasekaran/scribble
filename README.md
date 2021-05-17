@@ -21,6 +21,7 @@ Notes Taking app 📕
       <code>
         PORT = your port number
         MONGO_URI = your mongodb uri
+        JWT_KEY = your JWT key
       </code>
   
   4. Run the following command `tsc -w` typescript watchMode server. 
