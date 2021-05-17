@@ -20,11 +20,8 @@ router.post('/signup', async (req: Request, res: Response) => {
     }
 
     try {
-
         const userInfo = await user.findOne({ email });
-
         if (userInfo) throw new Error('User already Exist');
-
         const salt = await bcrypt.genSalt(10);
         const encryptedPassword = await bcrypt.hash(password, salt);
 
@@ -37,11 +34,7 @@ router.post('/signup', async (req: Request, res: Response) => {
         if (!savedUser) throw new Error('User not saved. Something went wrong');
 
         res.status(200).json({
-            status: "Success",
-            user: {
-                id: savedUser.id,
-                email: savedUser.email
-            }
+            status: "Success"
         })
 
     }
@@ -53,6 +46,10 @@ router.post('/signup', async (req: Request, res: Response) => {
 router.post('/login', async (req: Request, res: Response) => {
 
     const { email, password } = req.body;
+
+    if (!email || !password) {
+        res.status(404).json("Please Enter Email or Password")
+    }
 
     try {
         const userInfo = await user.findOne({ email });
@@ -74,7 +71,7 @@ router.post('/login', async (req: Request, res: Response) => {
         })
     }
     catch (err) {
-        res.status(404).json({ message: err.message })
+        res.status(404).json(err.message)
     }
 
 })
