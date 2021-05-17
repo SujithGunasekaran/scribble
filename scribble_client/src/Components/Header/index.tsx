@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import '../../Css/header.css';
 
-const Header: React.FC = () => {
+const Header: React.FC = memo(() => {
     return (
         <div>
             <div className="header_main">
@@ -28,6 +28,6 @@ const Header: React.FC = () => {
             </div>
         </div>
     )
-}
+})
 
 export default Header;
