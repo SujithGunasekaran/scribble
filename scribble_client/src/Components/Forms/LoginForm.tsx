@@ -4,7 +4,7 @@ import { FormProps } from '../../form.model';
 
 const LoginForm: React.FC<FormProps> = (props) => {
 
-    const { formField, handleInputChange, handleFormSubmit } = props;
+    const { formField, formError, handleInputChange, handleFormSubmit } = props;
 
     return (
         <>
@@ -18,6 +18,10 @@ const LoginForm: React.FC<FormProps> = (props) => {
                     value={formField?.email ?? ''}
                     onChange={handleInputChange}
                 />
+                {
+                    formError?.emailError &&
+                    <div className="form_input_error">{formError.emailError}</div>
+                }
                 <div className="form_model_label">Password</div>
                 <input
                     className="form_model_input"
@@ -26,6 +30,10 @@ const LoginForm: React.FC<FormProps> = (props) => {
                     value={formField?.password ?? ''}
                     onChange={handleInputChange}
                 />
+                {
+                    formError?.passwordError &&
+                    <div className="form_input_error">{formError.passwordError}</div>
+                }
                 <div className="form_model_forgot">
                     <Link to="/" href="/">Forgot Password ?</Link>
                 </div>

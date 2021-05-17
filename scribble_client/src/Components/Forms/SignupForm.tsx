@@ -5,7 +5,7 @@ import { FormProps } from '../../form.model';
 
 const SignupForm: React.FC<FormProps> = (props) => {
 
-    const { formField, handleInputChange, handleFormSubmit } = props;
+    const { formField, formError, handleInputChange, handleFormSubmit } = props;
 
     return (
         <>
@@ -19,6 +19,10 @@ const SignupForm: React.FC<FormProps> = (props) => {
                     value={formField?.email ?? ''}
                     onChange={handleInputChange}
                 />
+                {
+                    formError?.emailError &&
+                    <div className="form_input_error">{formError.emailError}</div>
+                }
                 <div className="form_model_label">Password</div>
                 <input
                     className="form_model_input"
@@ -27,6 +31,10 @@ const SignupForm: React.FC<FormProps> = (props) => {
                     value={formField?.password ?? ''}
                     onChange={handleInputChange}
                 />
+                {
+                    formError?.passwordError &&
+                    <div className="form_input_error">{formError.passwordError}</div>
+                }
                 <button className="form_model_btn">Create Account</button>
                 <div className="form_model_create">
                     Already have an account ?
