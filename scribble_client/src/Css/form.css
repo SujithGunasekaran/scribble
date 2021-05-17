@@ -1,6 +1,6 @@
 .form_container
 {
-    margin-top: 80px;
+    margin-top: 30px;
 }
 
 .form_model_container
@@ -123,4 +123,27 @@
 {
     text-decoration: none;
     color: var(--text-highlight);
+}
+
+.form_input_error
+{
+    padding : 8px 4px;
+    color : red;
+    font-family: var(--inter-text);
+    font-size: .800rem;
+    font-weight: 400;
+}
+.form_error_alert
+{
+    margin : 0px 0px 10px 0px;
+    padding : 9px 10px;
+    background-color: var(--error-alert-bg);
+    color: var(--error-alert-text);
+    border: 1px solid var(--error-alert-border);
+    border-radius: 8px;
+}
+.form_error_alert_cancel
+{
+    float: right !important;
+    cursor: pointer;
 }

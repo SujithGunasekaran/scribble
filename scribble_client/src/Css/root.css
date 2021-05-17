@@ -10,6 +10,9 @@
     --fourth-text-white : #B2B6B9;
     --fifth-text-white : #c1c6c9;
     --sixth-text-white : #424242;
+    --error-alert-text : #ff7b72;
+    --error-alert-bg : rgba(248,81,73,0.1);
+    --error-alert-border : rgba(248,81,73,0.4);
 
     /* fonts */
     --inter-text : 'Inter', sans-serif;
