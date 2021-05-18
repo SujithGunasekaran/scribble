@@ -27,40 +27,27 @@
 .header_auth_container
 {
     display: flex;
+    align-items: center;
 }
-.header_login
+.header_username
 {
     padding-right: 20px;
     font-family: var(--inter-text);
-    font-size: 1.1rem;
+    font-size: .980rem;
     font-weight: 400;
+    color : var(--fourth-text-white);
     letter-spacing: 0.040rem;
 }
-.header_login a
+.header_logout_icon
 {
-    color : var(--fifth-text-white);
-    transition: 0.4s all ease-in-out;
+    font-size: 1.5rem !important;
+    color : var(--fourth-text-white) !important;
+    transition: 0.4s all ease-in-out !important;
 }
-.header_login a:hover
+.header_logout_icon:hover
 {
-    color : var(--text-highlight);
     cursor: pointer;
-}
-.header_signup
-{
-    font-family: var(--inter-text);
-    font-size: 1.1rem;
-    letter-spacing: 0.040rem;
-    font-weight: 400;
-}
-.header_signup a
-{
-    color : var(--text-highlight);
-    transition: 0.4s all ease-in-out;
-}
-.header_signup a:hover
-{
-    color : var(--text-highlight);
+    color : var(--text-highlight) !important;
 }
 
 @media(max-width:780px)

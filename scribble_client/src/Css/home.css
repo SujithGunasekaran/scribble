@@ -28,6 +28,11 @@
     padding : 15px 20px;
     margin : 15px 5px;
 }
+.home_note_list_container:hover
+{
+    cursor: pointer;
+    background-color: var(--dark-three);
+}
 .home_note_head_container
 {
     display: flex;
@@ -54,19 +59,6 @@
     font-family: var(--inter-text);
     font-weight: 400;
     letter-spacing: 0.050rem;
-}
-.home_note_list_edit_btn
-{
-    margin-right: 10px;
-    display: none !important;
-    color : grey !important;
-    font-size: 1.2rem !important;
-    transition: 0.5s all ease-in-out;
-    cursor: pointer;
-}
-.home_note_list_edit_btn:hover
-{
-    color : var(--text-highlight) !important;
 }
 .home_note_list_delete_btn
 {
@@ -138,7 +130,7 @@
 {
     padding : 15px 25px;
     font-family: var(--inter-text);
-    font-size: 1rem;
+    font-size: .9rem;
     color : var(--third-text-white);
     border-bottom: 2px solid var(--body-background);
     transition: 0.5 all ease-in-out;
@@ -188,6 +180,7 @@
     border: none;
     width : 100%;
     height: 300px;
+    resize: none;
     font-family: var(--inter-text);
     font-size: 1rem;
     font-weight: 400;
@@ -219,17 +212,30 @@
     font-size: 1rem;
     letter-spacing: 0.040rem;
     background-color: var(--body-background);
-    transition: 0.4s all ease-in-out;
 }
 .home_note_save:hover
 {
     color : var(--text-highlight);
+    transition: 0.4s all ease-in-out;
 }
 .home_note_save:focus
 {
     outline: none;
 }
-
+.home_note_save_loading
+{
+    margin: 10px 0px;
+    display: flex;
+    margin-left: auto;
+    padding : 7px 15px;
+    border : 1px solid var(--third-text-white);
+    border-radius : 8px;
+    color : var(--fourth-text-white);
+    font-family: var(--inter-text);
+    font-size: 1rem;
+    letter-spacing: 0.040rem;
+    background-color: var(--body-background);
+}
 .home_note_edit_content::-webkit-scrollbar 
 {
     width: 5px;
@@ -305,7 +311,7 @@
     margin : 10px 0px 26px 0px;
     /* padding : 20px 25px; */
     border-radius: 8px;
-    height: 300px;
+    height: 380px;
     background-color: var(--dark-two);
     overflow-y: scroll;
 }
