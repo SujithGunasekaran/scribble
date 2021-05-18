@@ -5,6 +5,7 @@
     --dark-two : #232629;
     --dark-three : #2e3031;
     --text-highlight : #64ffda;
+    --text-highlight-medium : #c1e7de;
     --first-text-white : #fff;
     --second-text-white : #FFFFFF;
     --third-text-white : #9A9AA6;
@@ -14,9 +15,13 @@
     --error-alert-text : #ff7b72;
     --error-alert-bg : rgba(248,81,73,0.1);
     --error-alert-border : rgba(248,81,73,0.4);
+    --success-alert-text : #56d364;
+    --success-alert-bg : rgba(46,160,67,0.1);
+    --success-alter-border : rgba(46,160,67,0.4);
 
     /* fonts */
     --inter-text : 'Inter', sans-serif;
+    --dancing-text : 'Dancing Script', cursive;
 }
 
 .body_main
@@ -42,3 +47,4 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&display=swap');

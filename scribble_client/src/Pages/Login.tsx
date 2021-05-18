@@ -59,6 +59,7 @@ const Form: React.FC = () => {
                         <div className="form_model_container">
                             <Suspense fallback={<div>Loading...</div>}>
                                 <LoginForm
+                                    loading={loading}
                                     formError={formError}
                                     formField={formField}
                                     handleInputChange={handleInputChange}

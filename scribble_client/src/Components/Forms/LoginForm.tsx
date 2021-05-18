@@ -4,7 +4,7 @@ import { FormProps } from '../../form.model';
 
 const LoginForm: React.FC<FormProps> = (props) => {
 
-    const { formField, formError, handleInputChange, handleFormSubmit } = props;
+    const { formField, formError, loading, handleInputChange, handleFormSubmit } = props;
 
     return (
         <>
@@ -37,7 +37,7 @@ const LoginForm: React.FC<FormProps> = (props) => {
                 <div className="form_model_forgot">
                     <Link to="/" href="/">Forgot Password ?</Link>
                 </div>
-                <button className="form_model_btn">Singin</button>
+                <button disabled={loading ? true : false} className={loading ? "form_model_btn_loading" : "form_model_btn"}>{loading ? 'Signing In' : 'Signin'}</button>
                 <div className="form_model_create">
                     Don't have an account ?
                      <Link to="/signup" href="/signup"> Signup</Link>

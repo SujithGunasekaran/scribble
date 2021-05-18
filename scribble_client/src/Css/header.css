@@ -15,14 +15,14 @@
 }
 .header_logo
 {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 400;
     letter-spacing: 0.040rem;
-    font-family: var(--inter-text);
+    font-family: var(--dancing-text);
 }
 .header_logo a
 {
-    color : var(--first-text-white);
+    color : var(--text-highlight);
 }
 .header_auth_container
 {

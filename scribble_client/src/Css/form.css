@@ -92,10 +92,10 @@
     font-size: 1.050rem;
     font-weight: 600;
     letter-spacing: 0.050rem;
-    transition: 0.4s all ease-in-out;
 }
 .form_model_btn:hover
 {
+    transition: 0.4s all ease-in-out;
     background-color: var(--dark-two);
     border: 1px solid var(--text-highlight);
     color : var(--text-highlight);
@@ -103,6 +103,20 @@
 .form_model_btn:focus
 {
     outline: none;
+}
+.form_model_btn_loading
+{
+    margin : 20px 0px;
+    width: 100%;
+    padding : 10px 0px;
+    border : 1px solid var(--dark-two);
+    border-radius: 50px;
+    background-color: var(--text-highlight-medium);
+    color : var(--body-background);
+    font-family: var(--inter-text);
+    font-size: 1.050rem;
+    font-weight: 600;
+    letter-spacing: 0.050rem;
 }
 .form_model_create
 {
@@ -143,6 +157,21 @@
     border-radius: 8px;
 }
 .form_error_alert_cancel
+{
+    float: right !important;
+    cursor: pointer;
+}
+
+.form_success_alert
+{
+    margin : 0px 0px 10px 0px;
+    padding : 9px 10px;
+    background-color: var(--success-alert-bg);
+    color: var(--success-alert-text);
+    border: 1px solid var(--success-alert-border);
+    border-radius: 8px;
+}
+.form_success_alert_cancel
 {
     float: right !important;
     cursor: pointer;

@@ -4,19 +4,23 @@ import { useFetch } from '../Hooks/useFetch';
 import { userBaseURL } from '../config';
 import SignupForm from '../Components/Forms/SignupForm';
 import CloseIcon from '@material-ui/icons/Close';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import '../Css/form.css';
 
 
 const Signup: React.FC = () => {
 
-    const [successUser, setSuccessUser] = useState<boolean>(false);
+    const [successUser, setSuccessUser] = useState<string | null>(null);
 
     // hooks
-    const { formField, formError, setFormError, handleInputChange, checkValidation } = useForm();
+    const { formField, formError, setFormField, setFormError, handleInputChange, checkValidation } = useForm();
     const { loading, apiError, postData, setApiError } = useFetch();
 
     const { url } = userBaseURL;
+
+    const resetForm = () => {
+        setFormField({});
+    }
 
     const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -25,7 +29,7 @@ const Signup: React.FC = () => {
             try {
                 const response = await postData(`${url}/signup`, formField, false);
                 if (response.status === "Success") {
-                    setSuccessUser(true);
+                    setSuccessUser(response.message);
                 }
             }
             catch (err) {
@@ -33,13 +37,11 @@ const Signup: React.FC = () => {
             }
             finally {
                 setFormError({});
+                resetForm();
             }
         }
     }
 
-    if (!loading && successUser) {
-        return <Redirect to="/login" />
-    }
 
     return (
         <div>
@@ -55,9 +57,19 @@ const Signup: React.FC = () => {
                                 </span>
                             </div>
                         }
+                        {
+                            successUser &&
+                            <div className="form_success_alert">
+                                {successUser}
+                                <span className="form_success_alert_cancel">
+                                    <CloseIcon style={{ fontSize: '1.1rem' }} onClick={() => setSuccessUser(null)} />
+                                </span>
+                            </div>
+                        }
                         <div className="form_model_container">
                             <Suspense fallback={<div>Loading...</div>}>
                                 <SignupForm
+                                    loading={loading}
                                     formError={formError}
                                     formField={formField}
                                     handleInputChange={handleInputChange}

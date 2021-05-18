@@ -5,7 +5,7 @@ import { FormProps } from '../../form.model';
 
 const SignupForm: React.FC<FormProps> = (props) => {
 
-    const { formField, formError, handleInputChange, handleFormSubmit } = props;
+    const { formField, formError, loading, handleInputChange, handleFormSubmit } = props;
 
     return (
         <>
@@ -35,7 +35,7 @@ const SignupForm: React.FC<FormProps> = (props) => {
                     formError?.passwordError &&
                     <div className="form_input_error">{formError.passwordError}</div>
                 }
-                <button className="form_model_btn">Create Account</button>
+                <button disabled={loading ? true : false} className={loading ? "form_model_btn_loading" : "form_model_btn"}>{loading ? 'Creating' : 'Create Account'}</button>
                 <div className="form_model_create">
                     Already have an account ?
                      <Link to="/login" href="/login"> Signin</Link>
