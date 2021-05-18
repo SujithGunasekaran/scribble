@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { FormProps } from '../../form.model';
 import '../../Css/form.css';
 
-const EditNote: React.FC<FormProps> = ({ formField, formError, handleInputChange, handleSaveForm }) => {
+const EditNote: React.FC<FormProps> = ({ formField, formError, isNeedToEditNote, loading, handleInputChange, handleSaveForm }) => {
 
     // refs
     const titleRef = useRef<HTMLInputElement>(null);
@@ -37,7 +37,7 @@ const EditNote: React.FC<FormProps> = ({ formField, formError, handleInputChange
                     formError?.contentError &&
                     <div className="form_input_error">{formError.contentError}</div>
                 }
-                <button className="home_note_save">Save</button>
+                <button disabled={loading ? true : false} className={loading ? 'home_note_save_loading' : 'home_note_save'}>{!isNeedToEditNote ? (loading ? 'Updating' : 'Update') : (loading ? 'Saving' : 'Save')}</button>
             </form>
         </div>
     )

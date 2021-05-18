@@ -4,7 +4,7 @@ import { FormProps } from '../../form.model';
 
 const NoteWrapper: React.FC<FormProps> = (props) => {
 
-    const { currentComponent, formField, formError, handleInputChange, handleSaveForm } = props;
+    const { currentComponent, formField, formError, isNeedToEditNote, loading, handleInputChange, handleSaveForm } = props;
 
     const Component = currentComponent ? components[currentComponent.toLocaleLowerCase()] : null;
 
@@ -14,6 +14,8 @@ const NoteWrapper: React.FC<FormProps> = (props) => {
                 {
                     Component &&
                     <Component
+                        loading={loading}
+                        isNeedToEditNote={isNeedToEditNote}
                         formError={formError}
                         formField={formField}
                         handleInputChange={handleInputChange}

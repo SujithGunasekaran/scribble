@@ -1,5 +1,4 @@
-import React, { Suspense, lazy, useState, useEffect } from 'react';
-import AddIcon from '@material-ui/icons/Add';
+import React, { Suspense, lazy, useState, useEffect, useCallback } from 'react';
 import { useForm } from '../Hooks/useForm';
 import { Redirect } from 'react-router';
 import { useFetch } from '../Hooks/useFetch';
@@ -14,15 +13,22 @@ const NoteWrapper = lazy(() => import('../Components/NoteList/NoteWrapper'));
 
 const Home: React.FC = () => {
 
-    const [isNeedToEditNote, setIsNeedToEditNote] = useState<Boolean>(true);
+    const [isNeedToEditNote, setIsNeedToEditNote] = useState<boolean>(true);
     const [currentComponent, setCurrentComponent] = useState<string>('editnote');
     const [noteList, setNoteList] = useState<any>([]);
+    const [noteID, setNoteID] = useState<string | null>(null);
 
     // Hooks
-    const { formField, formError, setFormError, handleInputChange, checkValidation } = useForm();
+    const { formField, formError, setFormError, handleInputChange, checkValidation, setFormField } = useForm();
     const { loading, apiError, getData, postData, setApiError } = useFetch();
 
     const { url } = noteBaseURL;
+
+    const resetNotes = () => {
+        setFormField({});
+        setFormError({});
+        setApiError(null);
+    }
 
     const getNoteList = async () => {
         if (sessionStorage.getItem('userToken')) {
@@ -57,11 +63,11 @@ const Home: React.FC = () => {
         e.preventDefault();
         const canProceed = checkValidation('notes');
         let userID = sessionStorage.getItem('userID');
-        let data = {
-            ...formField,
-            userID
-        }
-        if (canProceed) {
+        if (canProceed && noteID === null) {
+            let data = {
+                ...formField,
+                userID
+            }
             try {
                 const response = await postData(`${url}/createNote`, data, true);
                 if (response.status === "Success") {
@@ -70,7 +76,7 @@ const Home: React.FC = () => {
                         noteList = [
                             ...noteList,
                             response.notes
-                        ]
+                        ];
                         return noteList;
                     })
                 }
@@ -79,9 +85,83 @@ const Home: React.FC = () => {
                 setApiError('Something went wrong');
             }
             finally {
-                setFormError({})
+                resetNotes();
             }
         }
+        if (canProceed && noteID) {
+            let data = {
+                ...formField,
+                userID
+            }
+            try {
+                const response = await postData(`${url}/upateNote/${noteID}`, data, true);
+                if (response.status === "Success") {
+                    setNoteList((prevNoteList: any) => {
+                        let noteList = JSON.parse(JSON.stringify(prevNoteList));
+                        let index = noteList.findIndex((noteID: any) => noteID._id === response.notes._id);
+                        noteList[index] = response.notes;
+                        return noteList;
+                    })
+                }
+            }
+            catch (err) {
+                setApiError('Something went wrong');
+            }
+            finally {
+                setFormError({});
+                setApiError(null);
+            }
+        }
+    }
+
+    const handleViewNotes = useCallback((noteInfo: any) => {
+        setFormField((prevFormField) => {
+            let formField = JSON.parse(JSON.stringify(prevFormField));
+            formField = {
+                title: noteInfo.title,
+                content: noteInfo.content
+            }
+            return formField;
+        })
+        setIsNeedToEditNote(false);
+        setCurrentComponent('preview');
+        setNoteID((prevNoteID) => {
+            let noteID = prevNoteID;
+            noteID = noteInfo._id;
+            return noteID;
+        });
+
+    }, [setFormField, setNoteID])
+
+    const handleDelete = useCallback(async (e: Event | React.MouseEvent<SVGSVGElement, MouseEvent>, id: string) => {
+        if (noteID === id) {
+            resetNotes();
+            setNoteID(null);
+            setIsNeedToEditNote(true);
+            setCurrentComponent('editnote');
+        }
+        e.stopPropagation();
+        try {
+            const response = await postData(`${url}/deleteNote/${id}`, null, true);
+            if (response.status === "Success") {
+                setNoteList((prevNoteList: any) => {
+                    let noteList = JSON.parse(JSON.stringify(prevNoteList));
+                    noteList = noteList.filter((noteID: any) => noteID._id !== response.noteID);
+                    return noteList;
+                })
+            }
+        }
+        catch (err) {
+            setApiError('Something went wrong while deleting note');
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [noteID])
+
+    const handleNewNote = () => {
+        setIsNeedToEditNote(true);
+        setNoteID(null);
+        resetNotes();
+        setCurrentComponent('editnote');
     }
 
     if (!sessionStorage.getItem('userToken')) {
@@ -100,6 +180,8 @@ const Home: React.FC = () => {
                                     <Suspense fallback={<div>Loading...</div>}>
                                         <NoteListItem
                                             noteList={noteList}
+                                            handleViewNotes={handleViewNotes}
+                                            handleDelete={handleDelete}
                                         />
                                     </Suspense>
                                 </div>
@@ -107,6 +189,12 @@ const Home: React.FC = () => {
                                     <div className="home_note_edit_header_container">
                                         <div className={`home_note_edit_header ${currentComponent === 'editnote' && 'note_active'}`} onClick={() => handleComponentChange('editnote')}>Edit</div>
                                         <div className={`home_note_edit_header ${currentComponent === 'preview' && 'note_active'}`} onClick={() => handleComponentChange('preview')}>Preview</div>
+                                        {
+                                            !isNeedToEditNote &&
+                                            <div className="home_note_edit_header" onClick={() => handleNewNote()}>
+                                                Add Note
+                                            </div>
+                                        }
                                     </div>
                                     {
                                         apiError &&
@@ -119,6 +207,8 @@ const Home: React.FC = () => {
                                     }
                                     <Suspense fallback={<div>Loading...</div>}>
                                         <NoteWrapper
+                                            loading={loading}
+                                            isNeedToEditNote={isNeedToEditNote}
                                             formError={formError}
                                             currentComponent={currentComponent}
                                             formField={formField}
@@ -128,12 +218,6 @@ const Home: React.FC = () => {
                                     </Suspense>
                                 </div>
                             </div>
-                            {
-                                !isNeedToEditNote &&
-                                <div className="add_container">
-                                    <AddIcon />
-                                </div>
-                            }
                         </div>
                     </div>
                 </div>
