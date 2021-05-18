@@ -41,8 +41,6 @@ Notes Taking app 📕
 
 <h4>Sujith Gunasekaran</h3>
 
-<h3>Version</h3>
-
 <h3>License</h3>
 
 <h4>This project is licensed under the MIT License</h4>
