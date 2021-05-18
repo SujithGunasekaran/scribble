@@ -6,7 +6,7 @@ export const useFetch = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [apiError, setApiError] = useState<string | null>(null);
 
-    const postData = async (url: string, inputData: object | string, userToken: boolean) => {
+    const postData = async (url: string, inputData: object | string | null, userToken: boolean) => {
         setLoading(true);
         const header: any = {
             headers: {

@@ -64,6 +64,6 @@ export const useForm = () => {
         return result;
     }
 
-    return { formField, formError, handleInputChange, setFormError, checkValidation }
+    return { formField, formError, handleInputChange, setFormError, checkValidation, setFormField }
 
 }
