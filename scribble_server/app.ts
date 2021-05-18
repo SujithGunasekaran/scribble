@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { config } from './config';
+import path from 'path';
 
 // API routes
 import notesRoute from './api/notesAPI';
@@ -28,6 +29,18 @@ mongoose.connect(`${MONGO_URI}`, { useNewUrlParser: true, useCreateIndex: true, 
 
 server.use('/api/user', userRoute);
 server.use('/api/notes', notesRoute);
+
+if (process.env.NODE_ENV === 'production') {
+    server.use(express.static('scribble_client/build'))
+    server.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname + 'scribble_client/build/index.html'))
+    })
+}
+
+// server.use(express.static('scribble_client/build'))
+// server.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname + 'scribble_client/build/index.html'))
+// })
 
 // server initialzing 
 server.listen(PORT, () => {

@@ -66,6 +66,7 @@
     "./scribble_server"
   ],
   "exclude": [
-    "./scribble_client"
+    "./scribble_client",
+    "node_modules"
   ]
 }

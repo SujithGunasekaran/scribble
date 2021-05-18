@@ -34,7 +34,8 @@ router.post('/signup', async (req: Request, res: Response) => {
         if (!savedUser) throw new Error('User not saved. Something went wrong');
 
         res.status(200).json({
-            status: "Success"
+            status: "Success",
+            message: "User created successfully"
         })
 
     }
