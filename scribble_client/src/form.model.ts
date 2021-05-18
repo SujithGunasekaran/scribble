@@ -5,10 +5,14 @@ export interface dynamicObject {
 }
 
 export interface noteList {
-    noteList: any
+    noteList: any,
+    handleViewNotes: (noteInfo: dynamicObject) => void,
+    handleDelete: (e: Event | React.MouseEvent<SVGSVGElement, MouseEvent>, id: string) => void
 }
 
 export interface FormProps {
+    loading?: boolean,
+    isNeedToEditNote?: boolean,
     currentComponent?: string | undefined,
     formError?: dynamicObject | undefined,
     formField?: dynamicObject,
