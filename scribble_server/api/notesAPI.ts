@@ -75,9 +75,10 @@ router.post('/createNote', async (req: Request, res: Response) => {
         res.status(200).json({
             status: "Success",
             notes: {
-                id: savedNotes._id,
+                _id: savedNotes._id,
                 title: savedNotes.title,
                 content: savedNotes.content,
+                createdAt: savedNotes.createdAt,
                 userID: savedNotes.userID
             }
         });
@@ -105,7 +106,7 @@ router.post('/deleteNote/:id', async (req: Request, res: Response) => {
         if (!deletedNote) throw new Error("Something went wrong while deleting note");
         res.status(200).json({
             status: "Success",
-            message: "Note deleted successfully"
+            noteID: deletedNote._id
         });
     }
     catch (err) {
@@ -130,9 +131,10 @@ router.post('/upateNote/:id', async (req: Request, res: Response) => {
         res.status(200).json({
             status: "Success",
             notes: {
-                id: updatedNotes._id,
+                _id: updatedNotes._id,
                 title: updatedNotes.title,
                 content: updatedNotes.content,
+                createdAt: updatedNotes.createdAt,
                 userID: updatedNotes.userID
             }
         })
