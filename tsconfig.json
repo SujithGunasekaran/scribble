@@ -63,6 +63,7 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
   "include": [
+    "./scribble_server/**/*",
     "./scribble_server"
   ],
   "exclude": [
