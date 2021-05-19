@@ -7,10 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/app.js",
     "dev": "nodemon dist/app.js",
-    "build": "tsc",
-    "postinstall": "npm run build",
-    "populateSampleData": "node dist/sampleData/populateSampleData",
-    "heroku-postbuild": "cd client && npm install && --only=dev && npm run build"
+    "populateSampleData": "node dist/sampleData/populateSampleData"
   },
   "repository": {
     "type": "git",
