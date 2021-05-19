@@ -1,10 +1,20 @@
+.form_main
+{
+    height : 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .form_container
 {
     margin-top: 30px;
+    min-width: 300px;
 }
 
 .form_model_container
 {
+    width: 380px;
     background-color: var(--dark-two);
     padding : 15px 25px;
     border-radius: 8px;
@@ -175,4 +185,12 @@
 {
     float: right !important;
     cursor: pointer;
+}
+
+@media(max-width:780px)
+{
+    .form_model_container{
+        margin: 0px 20px;
+        padding : 15px 15px;
+    }
 }

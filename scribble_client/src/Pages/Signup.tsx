@@ -44,41 +44,35 @@ const Signup: React.FC = () => {
 
 
     return (
-        <div>
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-md-4 mx-auto form_container">
-                        {
-                            apiError &&
-                            <div className="form_error_alert">
-                                {apiError}
-                                <span className="form_error_alert_cancel">
-                                    <CloseIcon style={{ fontSize: '1.1rem' }} onClick={() => setApiError(null)} />
-                                </span>
-                            </div>
-                        }
-                        {
-                            successUser &&
-                            <div className="form_success_alert">
-                                {successUser}
-                                <span className="form_success_alert_cancel">
-                                    <CloseIcon style={{ fontSize: '1.1rem' }} onClick={() => setSuccessUser(null)} />
-                                </span>
-                            </div>
-                        }
-                        <div className="form_model_container">
-                            <Suspense fallback={<div>Loading...</div>}>
-                                <SignupForm
-                                    loading={loading}
-                                    formError={formError}
-                                    formField={formField}
-                                    handleInputChange={handleInputChange}
-                                    handleFormSubmit={handleFormSubmit}
-                                />
-                            </Suspense>
-                        </div>
-                    </div>
+        <div className="form_main">
+            {
+                apiError &&
+                <div className="form_error_alert">
+                    {apiError}
+                    <span className="form_error_alert_cancel">
+                        <CloseIcon style={{ fontSize: '1.1rem' }} onClick={() => setApiError(null)} />
+                    </span>
                 </div>
+            }
+            {
+                successUser &&
+                <div className="form_success_alert">
+                    {successUser}
+                    <span className="form_success_alert_cancel">
+                        <CloseIcon style={{ fontSize: '1.1rem' }} onClick={() => setSuccessUser(null)} />
+                    </span>
+                </div>
+            }
+            <div className="form_model_container">
+                <Suspense fallback={<div>Loading...</div>}>
+                    <SignupForm
+                        loading={loading}
+                        formError={formError}
+                        formField={formField}
+                        handleInputChange={handleInputChange}
+                        handleFormSubmit={handleFormSubmit}
+                    />
+                </Suspense>
             </div>
         </div>
     )

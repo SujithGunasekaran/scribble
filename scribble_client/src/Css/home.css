@@ -141,6 +141,21 @@
     color : var(--text-highlight);
     border-bottom: 2px solid var(--text-highlight);
 }
+.home_note_edit_header_add
+{
+    padding : 15px 25px;
+    font-family: var(--inter-text);
+    font-size: .9rem;
+    color : var(--third-text-white);
+    border-bottom: 2px solid var(--body-background);
+    transition: 0.5 all ease-in-out;
+}
+.home_note_edit_header_add:hover
+{
+    cursor: pointer;
+    color : var(--text-highlight);
+    border-bottom: 2px solid var(--text-highlight);
+}
 
 .note_active
 {
@@ -151,9 +166,8 @@
 .home_note_edit_title_input
 {
     margin-top: 25px;
-    padding : 0px 9px;
+    padding : 10px 9px;
     width : 100%;
-    height : 55px;
     border : none;
     border-radius: 8px;
     font-size: 1.5rem;
@@ -236,49 +250,20 @@
     letter-spacing: 0.040rem;
     background-color: var(--body-background);
 }
-.home_note_edit_content::-webkit-scrollbar 
+.home_note_edit_back::before
 {
-    width: 5px;
-    border-radius: 0px;
-    background-color: var(--body-background);
-}
-.home_note_edit_content::-webkit-scrollbar-track 
-{
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-    -webkit-border-radius: 10px;
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 10px;
-}
-.home_note_edit_content::-webkit-scrollbar-thumb 
-{
-    -webkit-border-radius: 20px;
-    border-radius: 15px;
-    background: rgb(78, 78, 78); 
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    content: "←";
+    padding: 0px 9px 0px 3px;
 }
 
-
-.home_note_edit::-webkit-scrollbar 
+.home_note_edit_back
 {
-    width: 5px;
-    border-radius: 0px;
-    background-color: var(--body-background);
-}
-.home_note_edit::-webkit-scrollbar-track 
-{
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-    -webkit-border-radius: 10px;
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 10px;
-}
-.home_note_edit::-webkit-scrollbar-thumb 
-{
-    -webkit-border-radius: 20px;
-    border-radius: 15px;
-    background: rgb(78, 78, 78); 
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    display: none;
+    padding-bottom: 15px;
+    color: var(--text-highlight);
+    font-family: var(--inter-text);
+    font-size: .9rem;
+    font-weight: 400;
 }
 
 
@@ -301,6 +286,20 @@
 
 }
 
+.home_note_add_btn
+{
+    display: none;
+    position: absolute;
+    padding : 5px;
+    color : var(--body-background);
+    font-weight: bold !important;
+    bottom: 20px;
+    right : 20px;
+    background-color: var(--text-highlight);
+    border-radius: 50%;
+    width: 40px;
+    height : 40px;
+}
 
 
 /* markdown component */
@@ -309,35 +308,11 @@
 {
     padding : 20px 9px;
     margin : 10px 0px 26px 0px;
-    /* padding : 20px 25px; */
     border-radius: 8px;
-    height: 380px;
+    height: 300px;
     background-color: var(--dark-two);
     overflow-y: scroll;
 }
-
-.markdown_container::-webkit-scrollbar 
-{
-    width: 5px;
-    border-radius: 0px;
-    background-color: var(--body-background);
-}
-.markdown_container::-webkit-scrollbar-track 
-{
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-    -webkit-border-radius: 10px;
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 10px;
-}
-.markdown_container::-webkit-scrollbar-thumb 
-{
-    -webkit-border-radius: 20px;
-    border-radius: 15px;
-    background: rgb(78, 78, 78); 
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-}
-
 
 .note_error_alert
 {
@@ -352,4 +327,33 @@
 {
     float: right !important;
     cursor: pointer;
+}
+
+@media(max-width:780px){
+    .home_note_list{ 
+        width: 100%;
+        opacity: 2;
+        transition: opacity 0.7s linear;
+    }
+    .home_note_list.hide{ 
+        opacity: 0;
+        transition: opacity 0.5s linear;
+     }
+    .home_note_edit{
+        padding: 0px 3px;
+        width: 100%;
+        margin-left: 0px;
+        transform: translate(100%);
+        background-color: var(--body-background);
+        transition: all 0.5s ease-in-out;
+        z-index: 99999;
+    }
+    .home_note_edit.active
+    {
+        transform: translate(0rem);
+    }
+    .home_note_list_delete_btn{display : block !important;}
+    .home_note_edit_header_add {display: none;}
+    .home_note_add_btn{display: block;}
+    .home_note_edit_back{display: block;}
 }

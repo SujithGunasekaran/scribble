@@ -4,6 +4,7 @@ import { Redirect } from 'react-router';
 import { useFetch } from '../Hooks/useFetch';
 import { noteBaseURL } from '../config';
 import CloseIcon from '@material-ui/icons/Close';
+import AddIcon from '@material-ui/icons/Add';
 import '../Css/home.css';
 import '../Css/form.css';
 
@@ -17,6 +18,7 @@ const Home: React.FC = () => {
     const [currentComponent, setCurrentComponent] = useState<string>('editnote');
     const [noteList, setNoteList] = useState<any>([]);
     const [noteID, setNoteID] = useState<string | null>(null);
+    const [mobileEdit, setMobileEdit] = useState<boolean>(false);
 
     // Hooks
     const { formField, formError, setFormError, handleInputChange, checkValidation, setFormField } = useForm();
@@ -124,6 +126,7 @@ const Home: React.FC = () => {
             return formField;
         })
         setIsNeedToEditNote(false);
+        setMobileEdit(true);
         setCurrentComponent('preview');
         setNoteID((prevNoteID) => {
             let noteID = prevNoteID;
@@ -161,6 +164,7 @@ const Home: React.FC = () => {
         setIsNeedToEditNote(true);
         setNoteID(null);
         resetNotes();
+        setMobileEdit(true);
         setCurrentComponent('editnote');
     }
 
@@ -176,7 +180,7 @@ const Home: React.FC = () => {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="home_container">
-                                <div className="home_note_list">
+                                <div className={`home_note_list ${mobileEdit ? 'hide' : ''}`}>
                                     <Suspense fallback={<div>Loading...</div>}>
                                         <NoteListItem
                                             noteList={noteList}
@@ -185,13 +189,17 @@ const Home: React.FC = () => {
                                         />
                                     </Suspense>
                                 </div>
-                                <div className="home_note_edit">
+                                <div className={`home_note_edit ${mobileEdit ? 'active' : ''}`}>
+                                    {
+                                        mobileEdit &&
+                                        <div className="home_note_edit_back" onClick={() => setMobileEdit(false)}>back</div>
+                                    }
                                     <div className="home_note_edit_header_container">
                                         <div className={`home_note_edit_header ${currentComponent === 'editnote' && 'note_active'}`} onClick={() => handleComponentChange('editnote')}>Edit</div>
                                         <div className={`home_note_edit_header ${currentComponent === 'preview' && 'note_active'}`} onClick={() => handleComponentChange('preview')}>Preview</div>
                                         {
                                             !isNeedToEditNote &&
-                                            <div className="home_note_edit_header" onClick={() => handleNewNote()}>
+                                            <div className="home_note_edit_header_add" onClick={() => handleNewNote()}>
                                                 Add Note
                                             </div>
                                         }
@@ -220,6 +228,9 @@ const Home: React.FC = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="home_note_add_btn">
+                    <AddIcon onClick={() => handleNewNote()} style={{ fontSize: '1.8rem' }} />
                 </div>
             </div>
         </div>
