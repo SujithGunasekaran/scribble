@@ -34,6 +34,11 @@ Notes Taking app 📕
       
   5. Finally run `npm start` command to run server. 
 
+### Client Setup
+
+  1. In scribble_client folder run `npm install` command.
+  2. Run `npm start` command to start client.
+
 
 ## App Info
 
