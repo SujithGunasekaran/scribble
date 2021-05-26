@@ -35,7 +35,7 @@ const LoginForm: React.FC<FormProps> = (props) => {
                     <div className="form_input_error">{formError.passwordError}</div>
                 }
                 <div className="form_model_forgot">
-                    <Link to="/" href="/">Forgot Password ?</Link>
+                    <Link to="/ForgotPassword" href="/ForgotPassword">Forgot Password ?</Link>
                 </div>
                 <button disabled={loading ? true : false} className={loading ? "form_model_btn_loading" : "form_model_btn"}>{loading ? 'Signing In' : 'Signin'}</button>
                 <div className="form_model_create">
