@@ -11,6 +11,8 @@ export interface noteList {
 }
 
 export interface FormProps {
+    handleResetField?: any
+    userChecked?: boolean
     loading?: boolean,
     isNeedToEditNote?: boolean,
     currentComponent?: string | undefined,

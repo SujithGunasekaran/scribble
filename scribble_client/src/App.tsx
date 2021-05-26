@@ -6,6 +6,7 @@ import './Css/root.css';
 const Home = lazy(() => import('./Pages/Home'));
 const Login = lazy(() => import('./Pages/Login'));
 const Signup = lazy(() => import('./Pages/Signup'));
+const ForgotPassword = lazy(() => import('./Pages/ForgotPassword'));
 
 const App: React.FC = () => {
 
@@ -18,6 +19,7 @@ const App: React.FC = () => {
             <Route path="/home" exact component={Home} />
             <Route path="/login" exact component={Login} />
             <Route path="/signup" exact component={Signup} />
+            <Route path="/ForgotPassword" exact component={ForgotPassword} />
           </Suspense>
         </Switch>
       </div>
