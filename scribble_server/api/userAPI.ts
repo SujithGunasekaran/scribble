@@ -77,6 +77,49 @@ router.post('/login', async (req: Request, res: Response) => {
 
 })
 
+router.post('/checkUser', async (req: Request, res: Response) => {
+    const { email } = req.body;
+    try {
+        const userName = await user.findOne({ email });
+        if (!userName) throw new Error("Invalid user!!");
+        res.status(200).json({
+            status: "Success"
+        })
+    }
+    catch (err) {
+        res.status(404).json({
+            status: "Failed",
+            message: err.message
+        })
+    }
+})
+
+
+router.post('/resetPassword', async (req: Request, res: Response) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+        res.status(404).json({
+            status: "Failed",
+            message: "Enter all fields"
+        })
+    }
+    try {
+        const salt = await bcrypt.genSalt(10);
+        const encryptedPassword = await bcrypt.hash(password, salt);
+        if (!encryptedPassword) throw new Error('Error while encrypting');
+        const updatedInfo = await user.findOneAndUpdate({ email }, { $set: { password: encryptedPassword } }, { new: true, runValidators: true });
+        if (!updatedInfo) throw new Error('Error while updating password');
+        res.status(200).json({
+            status: "Success"
+        })
+    }
+    catch (err) {
+        res.status(404).json({
+            status: "Failed",
+            message: err.message
+        })
+    }
+})
 
 export default router;
 
