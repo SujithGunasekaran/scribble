@@ -6,6 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/app.js",
+    "tsc": "tsc",
+    "postinstall": "npm run tsc",
     "dev": "nodemon dist/app.js",
     "populateSampleData": "node dist/sampleData/populateSampleData"
   },
